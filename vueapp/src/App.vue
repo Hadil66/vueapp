@@ -1,9 +1,15 @@
 <template>
   <v-app>
-    <router-view />
+    <v-main>
+      <router-view />
+      <Dashboard />
+      <Cards />
+    </v-main>
   </v-app>
 </template>
 
 <script setup>
   //
 </script>
+
+
