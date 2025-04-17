@@ -21,4 +21,5 @@
   .v-application__wrap {
     min-height: 6em !important;
   }
+
 </style>

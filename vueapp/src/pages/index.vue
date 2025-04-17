@@ -1,5 +1,4 @@
 <template>
-  <AppFooter />
 </template>
 <script setup>
   //
