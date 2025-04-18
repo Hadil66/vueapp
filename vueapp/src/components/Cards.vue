@@ -51,6 +51,7 @@
 <style>
     .v-window {
         height: auto !important;
+        margin: 10px;
     }
 
     .v-window__controls {

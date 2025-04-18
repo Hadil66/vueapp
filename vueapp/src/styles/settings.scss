@@ -9,4 +9,7 @@
   $color-pack: false
 );
 
-$primary: salmon; 
+.v-application, .v-card, .v-list, .v-btn, .v-footer, .v-app-bar{
+  background-color: #f9f8f6 !important;
+  color: #131317 !important;
+}
