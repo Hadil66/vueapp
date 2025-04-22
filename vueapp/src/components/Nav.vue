@@ -1,5 +1,6 @@
 <template>
-  <div class="text-center">
+  <div class="nav">
+    <h1> Tauro </h1>
     <v-menu
       open-on-hover
     >
@@ -36,12 +37,15 @@
 </script>
 
 <style>
-  .text-center {
-    text-align: end !important;
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
-  .v-btn {
+  .nav .v-btn {
     padding: 5px;
-    height: auto !important;
+    height: 4em !important;
+    margin: 2em;
   }
 
 </style>

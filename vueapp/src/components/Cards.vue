@@ -54,8 +54,13 @@
         margin: 10px;
     }
 
+    .v-window__container {
+        align-items: center;
+    }
+
     .v-window__controls {
         position: relative !important;
+        max-width: 20em !important;
     }
 
     .v-btn {
