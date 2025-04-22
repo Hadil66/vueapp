@@ -9,9 +9,14 @@
   $color-pack: false
 );
 
+@font-face {
+  font-family: "Host-Grotesk";
+  src: url(@/assets/HostGrotesk-VariableFont_wght.ttf);
+}
 .v-application, .v-card, .v-list, .v-btn, .v-footer, .v-app-bar{
   background-color: #f9f8f6 !important;
   color: #131317 !important;
+  font-family: "Host-Grotesk";
 }
 
 // tauro-orange: #ff7c00;

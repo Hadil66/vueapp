@@ -1,7 +1,6 @@
 <template>
   <div class="nav">
-    <!-- <h1> Tauro </h1> -->
-    <img src="@/assets/tauro-logo.svg" class="tauro-logo">
+    <img src="@/assets/tauro-logo.svg" class="tauro-logo" alt="mensen in een kantoorruimte">
     <v-menu
       open-on-hover
     >
@@ -9,7 +8,6 @@
         <v-btn
           v-bind="props"
         >
-          <!-- <img src="@/assets/menu-bars.svg"> -->
           <svg width="40px" height="40px" viewBox="0 0 512 512" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="_x37_20-_menu__x2C__ui__x2C__user_interface__x2C_">
             <g>
@@ -37,9 +35,7 @@
     <div class="big-menu">
       <v-list>
         <v-list-item v-for="(item, index) in items" :key="index">
-          <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
         </v-list-item>
       </v-list>
     </div>
@@ -65,10 +61,6 @@
     justify-content: space-between;
     padding: 2em;
     height: 7em;
-  }
-
-  h1 {
-    z-index: 33;
   }
 
   .tauro-logo {

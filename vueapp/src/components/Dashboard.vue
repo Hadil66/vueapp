@@ -3,9 +3,7 @@
     <h1>Locaties in de randstad</h1>
     <v-list>
       <v-list-item v-for="(locatie, index) in locaties" :key="index">
-        <v-list-item-content>
           <v-list-item-title>{{ locatie }}</v-list-item-title>
-        </v-list-item-content>
       </v-list-item>
     </v-list>
   </v-card>

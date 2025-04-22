@@ -9,9 +9,7 @@
                             <v-card-title>{{ ruimte }}</v-card-title>
                             <v-card-subtitle>Max aantal personen</v-card-subtitle>  
                             <v-img
-                                src="https://via.placeholder.com/300x200"
                                 alt="placeholder"
-                                height="200"
                                 class="placeholder-image"
                             >
                             </v-img>
