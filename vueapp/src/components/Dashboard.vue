@@ -74,11 +74,12 @@ export default {
 
   .v-list-item-title {
     font-size: clamp(1.2rem, -2.2593rem + 377.9341vw, 1.5rem) !important;
+    border-bottom: solid 1px #131317;
+    width: max-content;
   }
 
   .v-list-item:hover, .v-list-item:focus {
-      color: pink !important;
-      text-decoration: underline;
+      color: #ff7c00 !important;
       cursor: pointer;
   }
 </style>

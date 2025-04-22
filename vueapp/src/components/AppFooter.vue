@@ -9,7 +9,7 @@
     ></v-btn>
 
     <div class="flex-1-0-100 text-center mt-2">
-      {{ new Date().getFullYear() }} — <strong>100% Leiden</strong>
+      {{ new Date().getFullYear() }} — <strong>V</strong>
     </div>
   </v-footer>
 </template>

@@ -58,12 +58,17 @@
         position: relative !important;
     }
 
+    .v-btn {
+        margin: 5px;
+    }
+
     .v-card {
         margin: 0 !important;
         max-width: none !important;
     }
     
     .features { 
+        border-radius: 8px !important;
         width: 80% !important;
         margin: 0 auto !important;
         padding: 16px  !important;
@@ -74,13 +79,14 @@
         flex-direction: column;
         align-items: center; 
     }
-    .placeholder-image {
-        background-image: url('@/assets/drk-plc-hldr.png');
+    .placeholder-image { 
+        border-radius: 8px !important;
+        background-image: url('@/assets/placeholder.png');
         background-size: cover;
         background-position: center;
         height: 9em;
         width: 8em;
-        border: solid 1px pink; 
+        border: solid 1px #ff7c00; 
     }
 
     .v-card-text {
@@ -89,9 +95,10 @@
 
     p {
         text-align: center;
+        border-radius: 8px !important;
         padding: 5px;
         height: 6em;
-        border: 1px solid pink;
+        border: 1px solid #ff7c00;
         transition: 0.3s;
     }
 
