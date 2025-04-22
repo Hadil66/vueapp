@@ -133,7 +133,7 @@
   }
 
   .header-image {
-    max-height: 30em;
+    max-height: 35em;
     width: 97vw;
     border-radius: 8px;
     margin: -6em auto 1em auto; 
