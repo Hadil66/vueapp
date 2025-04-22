@@ -1,6 +1,7 @@
 <template>
   <div class="nav">
-    <h1> Tauro </h1>
+    <!-- <h1> Tauro </h1> -->
+    <img src="@/assets/tauro-logo.svg" class="tauro-logo">
     <v-menu
       open-on-hover
     >
@@ -43,6 +44,7 @@
       </v-list>
     </div>
   </div>
+<img src="@/assets/tauro_header.webp" class="header-image">
 </template>
 
 <script setup>
@@ -62,17 +64,33 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 2em;
-    background: orange;
     height: 7em;
+  }
+
+  h1 {
+    z-index: 33;
+  }
+
+  .tauro-logo {
+    z-index: 24;
+    height: 15em;
+    margin-top: -1em;
+  }
+
+  @media (max-width:650px) {
+    .tauro-logo {
+      height: 10em;
+    }
   }
     
   @media (max-width:1079px) { 
-      .nav .v-btn {
-        padding: 5px;
-        height: 4em !important;
-        border-radius: 50%;
-        background-color: rgba(249,248,246,0.75) !important;
-      }
+    .nav .v-btn {
+      padding: 5px;
+      height: 4em !important;
+      border-radius: 50%;
+      background-color: rgba(249,248,246,0.75) !important;
+      z-index: 82;
+    }
 
     .big-menu {
       display: none;
@@ -114,4 +132,23 @@
     min-height: 0 !important;
   }
 
+  .header-image {
+    max-height: 30em;
+    width: 97vw;
+    border-radius: 8px;
+    margin: -6em auto 1em auto; 
+    align-items: center;
+    display: flex;
+  }
+
+  @media(min-width:1536px) {
+    .header-image {
+      width: 70vw;
+    }
+
+    .nav {
+      width: 70vw;
+      margin: 0 auto;
+    }
+  }
 </style>
