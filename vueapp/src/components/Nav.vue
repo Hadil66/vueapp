@@ -1,12 +1,13 @@
 <template>
   <div class="nav">
-    <img src="@/assets/tauro-logo.svg" class="tauro-logo" alt="mensen in een kantoorruimte">
+    <img src="@/assets/tauro-logo.svg" class="tauro-logo" alt="Tauro logo">
+
     <v-menu
       open-on-hover
     >
       <template v-slot:activator="{ props }">
         <v-btn
-          v-bind="props"
+          v-bind="props" aria-label="Menu bars" title="Menu"
         >
           <svg width="40px" height="40px" viewBox="0 0 512 512" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="_x37_20-_menu__x2C__ui__x2C__user_interface__x2C_">
@@ -40,10 +41,11 @@
       </v-list>
     </div>
   </div>
-<img src="@/assets/tauro_header.webp" class="header-image">
+<img src="@/assets/tauro_header.webp" class="header-image" alt="Mensen in een kantoorruimte">
 </template>
 
 <script setup>
+  import logo from '@/assets/tauro-logo.svg'
   const items = [
     { title: 'Kantoorruimte' },
     { title: 'Werkplek' },

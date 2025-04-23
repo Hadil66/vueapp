@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto" max-width="200">
     <h1>Locaties in de randstad</h1>
-    <v-list>
-      <v-list-item v-for="(locatie, index) in locaties" :key="index">
-          <v-list-item-title>{{ locatie }}</v-list-item-title>
+    <v-list role="list">
+      <v-list-item v-for="(locatie, index) in locaties" :key="index" role="listitem">
+          <v-list-item-title >{{ locatie }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
