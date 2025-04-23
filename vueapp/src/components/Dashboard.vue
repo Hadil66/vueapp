@@ -2,7 +2,7 @@
   <v-card class="mx-auto" max-width="200">
     <h1>Locaties in de randstad</h1>
     <v-list role="list">
-      <v-list-item v-for="(locatie, index) in locaties" :key="index" role="listitem">
+      <v-list-item v-for="(locatie, index) in locaties" :key="index" role="listitem" tabindex="0">
           <v-list-item-title >{{ locatie }}</v-list-item-title>
       </v-list-item>
     </v-list>

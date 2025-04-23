@@ -17,10 +17,10 @@
                         </div>
                     </v-carousel-item>
                 </v-carousel>
-                            <p> feature 1 </p>
-                            <p> feature 2 </p>
-                            <p> feature 3 </p>
-                            <p> feature 4 </p>
+                            <p tabindex="0"> feature 1 </p>
+                            <p tabindex="0"> feature 2 </p>
+                            <p tabindex="0"> feature 3 </p>
+                            <p tabindex="0"> feature 4 </p>
                         </v-card>
 
             </v-col>
