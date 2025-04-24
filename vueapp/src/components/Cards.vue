@@ -17,7 +17,7 @@
                         </div>
                     </v-carousel-item>
                 </v-carousel>
-                            <p tabindex="0"> feature 1 </p>
+                            <p tabindex="0"> feature 1 <v-date-picker></v-date-picker> </p>
                             <p tabindex="0"> feature 2 </p>
                             <p tabindex="0"> feature 3 </p>
                             <p tabindex="0"> feature 4 </p>
@@ -99,8 +99,11 @@
     p {
         text-align: center;
         border-radius: 8px !important;
-        padding: 5px;
-        height: 6em;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 6em;
         border: 1px solid #ff7c00;
         transition: 0.3s;
     }

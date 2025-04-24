@@ -9,7 +9,7 @@
     ></v-btn>
 
     <div class="flex-1-0-100 text-center mt-2">
-      {{ new Date().getFullYear() }} — <strong>V</strong>
+      {{ new Date().getFullYear() }} — <strong>Tauro prototype</strong>
     </div>
   </v-footer>
 </template>
