@@ -41,11 +41,16 @@
       </v-list>
     </div>
   </div>
-<img src="@/assets/tauro_header.webp" class="header-image" alt="Mensen in een kantoorruimte">
+<img 
+  src="@/assets/tauro_header.webp" 
+  class="header-image" 
+  alt="Mensen in een kantoorruimte"
+  loading="eager"
+  fetchpriority="high"
+  >
 </template>
 
 <script setup>
-  import logo from '@/assets/tauro-logo.svg'
   const items = [
     { title: 'Kantoorruimte' },
     { title: 'Werkplek' },
