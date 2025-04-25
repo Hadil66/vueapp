@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const ruimtes = [
   "Ruimte 1",
@@ -54,22 +54,16 @@ const onRangeChange = (newRange) => {
   console.log("Range updated:", newRange);
 };
 
-const attributes = computed(() => {
-  if (selectedRange.value?.start && selectedRange.value?.end) {
-    return [
-      {
-        key: 'selected-range',
-        highlight: true,
-        dates: {
-          start: selectedRange.value.start,
-          end: selectedRange.value.end,
-        },
-      },
-    ];
-  }
-  return [];
-});
-
+const attributes = [
+  {
+    key: 'booked',
+    dates: ['2025-05-01', '2025-05-02'],
+    highlight: { color: 'red' },
+    popover: {
+      label: 'Volgeboekt',
+    },
+  },
+]
 </script>
 
 <style>
