@@ -8,20 +8,19 @@
 // Plugins
 import { registerPlugins } from '@/plugins'
 
-// Components
-import App from './App.vue'
-
 // Composables
 import { createApp } from 'vue'
 
-const app = createApp(App)
-
-registerPlugins(app)
-
+// Components
+import App from './App.vue'
 
 // V-calendar
 import VCalendar from 'v-calendar';
 import 'v-calendar/style.css';
+
+const app = createApp(App)
+
+registerPlugins(app)
 
 app.use(VCalendar, {})
 

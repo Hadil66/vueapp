@@ -13,13 +13,18 @@
               </div>
             </v-carousel-item>
           </v-carousel>
-          <p tabindex="0">
+          <div class="feature" tabindex="0">
             feature 1
-            <VCalendar mode="range" :attributes="attributes" />
-          </p>
-          <p tabindex="0">feature 2</p>
-          <p tabindex="0">feature 3</p>
-          <p tabindex="0">feature 4</p>
+            <VCalendar
+              mode="range"
+              :model-value="selectedRange"
+              @update:model-value="onRangeChange"
+              :attributes="attributes"
+            />
+          </div>
+          <div class="feature" tabindex="0">feature 2</div>
+          <div class="feature" tabindex="0">feature 3</div>
+          <div class="feature" tabindex="0">feature 4</div>
         </v-card>
       </v-col>
     </v-row>
@@ -27,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, computed } from "vue";
 
 const ruimtes = [
   "Ruimte 1",
@@ -44,22 +49,27 @@ const selectedRange = ref({
   end: null,
 });
 
-const attributes = ref([
-  {
-    key: "today",
-    highlight: true,
-    dates: new Date(),
-  },
-]);
-
-watch(selectedRange, (newRange) => {
-  console.log("Selected Range updated:", newRange);
-});
-
 const onRangeChange = (newRange) => {
   selectedRange.value = newRange;
-  console.log("Range updated in onRangeChange:", newRange);
+  console.log("Range updated:", newRange);
 };
+
+const attributes = computed(() => {
+  if (selectedRange.value?.start && selectedRange.value?.end) {
+    return [
+      {
+        key: 'selected-range',
+        highlight: true,
+        dates: {
+          start: selectedRange.value.start,
+          end: selectedRange.value.end,
+        },
+      },
+    ];
+  }
+  return [];
+});
+
 </script>
 
 <style>
@@ -113,7 +123,7 @@ const onRangeChange = (newRange) => {
   padding: 16px 0 !important;
 }
 
-p {
+.feature {
   text-align: center;
   border-radius: 8px !important;
   padding: 10px;
@@ -126,12 +136,12 @@ p {
 }
 
 @media (max-width: 849px) {
-  p {
+  .feature {
     margin: 16px;
   }
 }
 
-p:hover {
+.feature:hover {
   -webkit-box-shadow: 2px 2px 16px 0px rgba(148, 148, 148, 0.7);
   cursor: pointer;
 }
@@ -148,18 +158,18 @@ p:hover {
   .v-carousel {
     grid-area: 1 / 1 / 3 / 2 !important;
   }
-  p:nth-of-type(1) {
+  .feature:nth-of-type(1) {
     grid-area: 1 / 2 / 2 / 3 !important;
     margin-top: 1rem !important;
   }
-  p:nth-of-type(2) {
+  .feature:nth-of-type(2) {
     grid-area: 1 / 3 / 2 / 4 !important;
     margin-top: 1rem !important;
   }
-  p:nth-of-type(3) {
+  .feature:nth-of-type(3) {
     grid-area: 2 / 2 / 3 / 3 !important;
   }
-  p:nth-of-type(4) {
+  .feature:nth-of-type(4) {
     grid-area: 2 / 3 / 3 / 4 !important;
   }
 }
