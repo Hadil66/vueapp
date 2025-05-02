@@ -48,16 +48,16 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch } from 'vue';
+  import { ref } from 'vue';
 
   const ruimtes = [
-    "Ruimte 1",
-    "Ruimte 2",
-    "Ruimte 3",
-    "Ruimte 4",
-    "Ruimte 5",
-    "Ruimte 6",
-    "Ruimte 7",
+    "Vergaderruimte 1",
+    "Vergaderruimte 2",
+    "Vergaderruimte 3",
+    "Vergaderruimte 4",
+    "Vergaderruimte 5",
+    "Vergaderruimte 6",
+    "Vergaderruimte 7",
   ];
 
   const selectedDate = ref(null); 
@@ -157,6 +157,10 @@
     min-height: 6em;
     border: 1px solid #ff7c00;
     transition: 0.3s;
+  }
+
+  .v-select .v-field {
+    width: 18em !important;
   }
 
   @media (max-width: 849px) {
