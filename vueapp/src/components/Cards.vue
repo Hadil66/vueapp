@@ -5,6 +5,16 @@
         <v-card class="features">
           <div class="feature-1" tabindex="0">
             feature 1
+            <v-list>
+              <v-list-item v-for="(ruimte, index) in ruimtes" :key="index">
+                <div class="container">
+                  <v-card-title>{{ ruimte }}</v-card-title>
+                </div>
+              </v-list-item>
+            </v-list>
+          </div>
+          <div class="feature-2" tabindex="0">
+            feature 2
             <v-carousel hide-delimiters>
               <v-carousel-item v-for="(ruimte, index) in ruimtes" :key="index">
                 <div class="container">
@@ -16,7 +26,6 @@
               </v-carousel-item>
             </v-carousel>
           </div>
-          <div class="feature-2" tabindex="0">feature 2</div>
           <div class="feature-3" tabindex="0">
             feature 3
             <v-date-picker
