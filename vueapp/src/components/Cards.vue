@@ -14,35 +14,29 @@
             </v-carousel-item>
           </v-carousel>
           <div class="feature" tabindex="0"> feature 1
-            <v-date-picker v-model="selectedDate"
-              title="Selecteer een datum en tijd"
+            <v-date-picker 
+              v-model="selectedDate"
+              :first-day-of-week="1"
+              hide-header
               :allowed-dates="allowedDates"
               @update:model-value="onDateSelected" 
-              multiple
+              
               color= "primary"
             />
-            <v-card-text v-if="selectedDate && selectedDate.length"> <h3 class="mb-4">Beschikbare Tijdsloten</h3> </v-card-text>
+              <v-card-text v-if="selectedDate">
+              <h3>Beschikbare tijdsloten voor  
+                {{ new Date(selectedDate).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' }) }}
+              </h3> 
+            </v-card-text>
             <v-select
-              v-if="selectedDate && selectedDate.length"
+              v-if="selectedDate"
               v-model="selectedTimeSlot"
               :items="availableTimeSlots"
               label="Selecteer een tijdslot"
               :disabled="!selectedDate"
               multiple
-              no-data-text="Selecteer eerst een datum"
             >
             </v-select>
-
-            <v-alert
-              v-if="selectedDate && availableTimeSlots.length === 0 && !loadingTimeSlots"
-              type="warning"
-              dense
-              text
-              class="mt-4"
-            >
-              Geen tijdsloten beschikbaar voor deze datum.
-            </v-alert>
-
           </div>
           <div class="feature" tabindex="0">feature 2</div>
           <div class="feature" tabindex="0">feature 3</div>
@@ -54,88 +48,61 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+  import { ref, computed, watch } from 'vue';
 
-const ruimtes = [
-  "Ruimte 1",
-  "Ruimte 2",
-  "Ruimte 3",
-  "Ruimte 4",
-  "Ruimte 5",
-  "Ruimte 6",
-  "Ruimte 7",
-];
+  const ruimtes = [
+    "Ruimte 1",
+    "Ruimte 2",
+    "Ruimte 3",
+    "Ruimte 4",
+    "Ruimte 5",
+    "Ruimte 6",
+    "Ruimte 7",
+  ];
 
-// --- Data Refs ---
-const selectedDate = ref(null); 
-const selectedTimeSlot = ref(null); 
-const availableTimeSlots = ref([]); 
-const loadingTimeSlots = ref(false); 
-const possibleTimeSlots = [
-  '09:00 - 10:00',
-  '10:00 - 11:00',
-  '11:00 - 12:00',
-  '13:00 - 14:00',
-  '14:00 - 15:00',
-  '15:00 - 16:00',
-  '16:00 - 17:00',
-];
+  const selectedDate = ref(null); 
+  const selectedTimeSlot = ref(null); 
+  const availableTimeSlots = ref([]); 
+  const loadingTimeSlots = ref(false); 
+  const possibleTimeSlots = [
+    '09:00 - 10:00',
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '13:00 - 14:00',
+    '14:00 - 15:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00',
+  ];
 
-// --- Computed Property for Display ---
-const formattedSelectedDate = computed(() => {
-  if (!selectedDate.value) return '';
-  // Make sure selectedDate.value is a Date object before formatting
-  const date = selectedDate.value instanceof Date ? selectedDate.value : new Date(selectedDate.value);
-  return date.toLocaleDateString('nl-NL', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const allowedDates = (date) => {
+    const day = new Date(date).getDay();
+    return day !== 0 && day !== 6;
+  };
+
+  const formattedSelectedDate = computed(() => {
+    if (!selectedDate.value) return '';
+    const date = selectedDate.value instanceof Date ? selectedDate.value : new Date(selectedDate.value);
+    return date.toLocaleDateString('nl-NL', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   });
-});
 
-// --- Methods ---
+  const fetchAvailableSlots = async (date) => {
+    availableTimeSlots.value = [...possibleTimeSlots]; 
+};
 
-// Function to simulate fetching slots for a date
-const fetchAvailableSlots = async (date) => {
-  if (!date) {
-    availableTimeSlots.value = [];
-    return;
-  }
-  loadingTimeSlots.value = true;
-  // --- FAKE AVAILABLE TIMES ---
-  await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-
-  // Example logic: Maybe weekends have fewer slots, or fetch real data
-  const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
-  if (dayOfWeek === 0 || dayOfWeek === 6) {
-     // Simulate fewer slots on weekends
-     availableTimeSlots.value = ['10:00 - 11:00', '11:00 - 12:00'];
-  } else {
-    // Simulate different slots on specific dates (example)
-    if (date.getDate() % 5 === 0) { // Just a silly example
-        availableTimeSlots.value = ['09:00 - 10:00', '13:00 - 14:00', '14:00 - 15:00'];
+  const onDateSelected = (newDate) => {
+    selectedTimeSlot.value = null;
+    if (newDate) {
+        const dateObj = newDate instanceof Date ? newDate : new Date(newDate);
+        fetchAvailableSlots(dateObj);
     } else {
-        availableTimeSlots.value = [...possibleTimeSlots]; 
+        availableTimeSlots.value = []; 
     }
-  }
-  // --- END SIMULATION ---
-  loadingTimeSlots.value = false;
-};
-
-// Called when the date picker value changes
-const onDateSelected = (newDate) => {
-   // When a new date is selected, reset the time slot
-   selectedTimeSlot.value = null;
-   // Fetch slots for the new date
-   if (newDate) {
-      // Ensure newDate is a Date object if needed by your fetch logic
-      const dateObj = newDate instanceof Date ? newDate : new Date(newDate);
-      fetchAvailableSlots(dateObj);
-   } else {
-      availableTimeSlots.value = []; // Clear slots if date is cleared
-   }
-};
+  };
 </script>
 
 <style>
