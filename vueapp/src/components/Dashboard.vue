@@ -35,20 +35,20 @@ export default {
     padding: 2em;
   }
 
-  .v-list {
+  .mx-auto .v-list {
       display: flex !important;
       flex-direction: column !important;
       flex-wrap: wrap !important;
   }
 
   @media (min-width:600px) {
-    .v-list {
+    .mx-auto .v-list {
       height: 15em !important;
     }
   }
 
   @media (min-width: 850px) { 
-    .v-list {
+    .mx-auto .v-list {
       height: 10em;
     }
   }
@@ -66,17 +66,17 @@ export default {
     width: clamp(200px, 40%, 400px);
   }
 
-  .v-list-item {
+  .mx-auto .v-list-item {
     height: 2em;
   }
 
-  .v-list-item-title {
+  .mx-auto .v-list-item-title {
     font-size: clamp(1.2rem, -2.2593rem + 377.9341vw, 1.5rem) !important;
     border-bottom: solid 1px #131317;
     width: max-content;
   }
 
-  .v-list-item:hover, .v-list-item:focus {
+  .v-list-item:hover, .v-list-item:focus, .v-list-item:active {
       color: #ff7c00 !important;
       cursor: pointer;
   }
