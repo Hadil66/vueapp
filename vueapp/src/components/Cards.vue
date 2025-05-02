@@ -96,13 +96,9 @@
 
   const onDateSelected = (newDate) => {
     selectedTimeSlot.value = null;
-    if (newDate) {
-        const dateObj = newDate instanceof Date ? newDate : new Date(newDate);
-        fetchAvailableSlots(dateObj);
-    } else {
-        availableTimeSlots.value = []; 
-    }
+    availableTimeSlots.value = [];
   };
+
 </script>
 
 <style>
