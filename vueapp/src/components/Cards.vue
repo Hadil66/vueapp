@@ -90,15 +90,10 @@
     });
   });
 
-  const fetchAvailableSlots = async (date) => {
-    availableTimeSlots.value = [...possibleTimeSlots]; 
-};
-
   const onDateSelected = (newDate) => {
     selectedTimeSlot.value = null;
-    availableTimeSlots.value = [];
+    availableTimeSlots.value = [...possibleTimeSlots]; 
   };
-
 </script>
 
 <style>
