@@ -3,7 +3,7 @@
     <h1>Locaties in de randstad</h1>
     <v-list role="list">
       <v-list-item v-for="(locatie, index) in locaties" :key="index" role="listitem" tabindex="0">
-          <v-list-item-title >{{ locatie }}</v-list-item-title>
+          <v-list-item-title>{{ locatie }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       locaties: [
         'Alphen a/d Rijn',
@@ -20,7 +20,7 @@ export default {
         'Den Haag',
         'Heemstede',
         'Oegstgeest',
-        'Rijswijk'
+        'Rijswijk',
       ],
     };
   },
@@ -47,7 +47,7 @@ export default {
     }
   }
 
-  @media (min-width: 850px) { 
+  @media (min-width: 850px) {
     .mx-auto .v-list {
       height: 10em;
     }
