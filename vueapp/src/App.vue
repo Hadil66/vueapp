@@ -7,7 +7,7 @@
            But for the debug, this is fine. -->
       <Nav />
       <Dashboard />
-      <Cards />
+      <ReservationStepper />
       <AppFooter />
     </v-main>
   </v-app>
@@ -19,7 +19,7 @@ import { onMounted } from 'vue'; // Import onMounted
 // Assuming Nav, Dashboard, Cards, AppFooter are imported components if not global
 // import Nav from './components/Nav.vue';
 // import Dashboard from './components/Dashboard.vue';
-// import Cards from './components/Cards.vue'; // Or wherever Cards.vue is
+// import ReservationStepper from './components/ReservationStepper.vue'; 
 // import AppFooter from './components/AppFooter.vue';
 
 

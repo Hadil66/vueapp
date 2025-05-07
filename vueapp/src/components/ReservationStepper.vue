@@ -397,7 +397,7 @@ const fetchAllBookings = async () => {
 };
 
 const processRoomBookings = () => {
-  if (ruimtes.value.length === 0) { // Only check ruimtes, as allBookingsFromApi might be empty if no bookings exist yet
+  if (ruimtes.value.length === 0) { 
      ruimtes.value.forEach(room => room.bookings = []);
     return;
   }
@@ -410,7 +410,7 @@ const processRoomBookings = () => {
       if (!roomBookingsByDate[apiBooking.date]) {
         roomBookingsByDate[apiBooking.date] = new Set();
       }
-      (apiBooking.times || []).forEach(time => roomBookingsByDate[apiBooking.date].add(time)); // Ensure apiBooking.times is an array
+      (apiBooking.times || []).forEach(time => roomBookingsByDate[apiBooking.date].add(time)); 
     });
 
     room.bookings = Object.entries(roomBookingsByDate).map(([date, timesSet]) => ({
@@ -431,7 +431,7 @@ onMounted(async () => {
 });
 
 // Watchers
-watch(selectedVergaderruimteId, (newId, oldId) => { // Removed async as it's not needed here
+watch(selectedVergaderruimteId, (newId, oldId) => { 
   if (newId !== oldId) {
     selectedDate.value = null;
     timeSelection.value = [];
@@ -452,7 +452,7 @@ const selectedRoomObject = computed(() => {
 const bookedSlotsForSelectedDate = computed(() => {
   const room = selectedRoomObject.value;
   const dateStr = formatDateISO(selectedDate.value);
-  if (!room || !dateStr || !room.bookings) return []; // Add check for room.bookings
+  if (!room || !dateStr || !room.bookings) return []; 
 
   const bookingForDate = room.bookings.find(b => b.date === dateStr);
   return bookingForDate ? bookingForDate.times : [];
@@ -466,10 +466,10 @@ const allTimesBookedForDate = computed(() => {
 const fullyBookedDatesForSelectedRoom = computed(() => {
   const bookedDates = new Set();
   const room = selectedRoomObject.value;
-  if (!room || !room.bookings) return bookedDates; // Add check for room.bookings
+  if (!room || !room.bookings) return bookedDates; 
 
   room.bookings.forEach(booking => {
-    if (booking.times && booking.times.length >= staticPossibleTimeSlots.length) { // Check if booking.times exists
+    if (booking.times && booking.times.length >= staticPossibleTimeSlots.length) { 
       bookedDates.add(booking.date);
     }
   });
@@ -482,7 +482,7 @@ const popularTimeSlots = computed(() => {
   staticPossibleTimeSlots.forEach(time => counts[time] = 0);
 
   allBookingsFromApi.value.forEach(booking => {
-    (booking.times || []).forEach(time => { // Ensure booking.times exists
+    (booking.times || []).forEach(time => { 
       if (counts[time] !== undefined) {
         counts[time]++;
         if (counts[time] > maxCount) maxCount = counts[time];
@@ -585,7 +585,7 @@ const submitBooking = async () => {
   // --- DEBUG AUTH START ---
   console.log("--- DEBUG AUTH ---");
   const usernameFromEnv = import.meta.env.VITE_WP_USERNAME;
-  const appPasswordFromConfig = WP_APP_PASSWORD; // This comes from config.js
+  const appPasswordFromConfig = WP_APP_PASSWORD;
   console.log("Username from Env (.env.local):", usernameFromEnv);
   console.log("App Password from Config JS (config.js):", appPasswordFromConfig);
 
@@ -593,11 +593,11 @@ const submitBooking = async () => {
       console.error("CRITICAL: Username or App Password is not defined!");
       apiError.value = "Authenticatiegegevens ontbreken. Controleer de .env.local en config.js bestanden.";
       isSubmittingBooking.value = false;
-      return; // Stop if critical info is missing
+      return; 
   }
 
   const credentialsString = `${usernameFromEnv}:${appPasswordFromConfig}`;
-  console.log("String to be Base64 encoded:", `'${credentialsString}'`); // Added quotes to see exact string with spaces
+  console.log("String to be Base64 encoded:", `'${credentialsString}'`); 
 
   let base64Credentials;
   try {
@@ -637,7 +637,7 @@ const submitBooking = async () => {
 
     currentStep.value = 4;
   } catch (error) {
-    console.error('Error submitting booking:', error.response?.data || error.message); // Log full error
+    console.error('Error submitting booking:', error.response?.data || error.message); 
     apiError.value = `Fout bij het maken van de reservering: ${error.response?.data?.message || error.message}. Controleer de WordPress authenticatie en CORS instellingen.`;
   } finally {
     isSubmittingBooking.value = false;
@@ -656,7 +656,6 @@ const resetStepper = async () => {
 </script>
 
 <style>
-/* Your existing styles remain here */
 .stepper-title {
   font-size: 1.3rem;
   font-weight: 500;
@@ -696,9 +695,7 @@ const resetStepper = async () => {
 .meeting-room-card .meeting-room-detail-image {
   border: 1px solid #eee;
 }
-.v-col-sm-6 { /* This global style might be too broad. Consider more specific selectors if it causes issues elsewhere */
-  flex: 0 0 50% !important;
-  max-width: 50% !important;
+.v-col-sm-6 { 
   min-width: 21em !important;
 }
 .date-picker {
