@@ -20,11 +20,11 @@
           :disabled="isLoading"
         >
           <v-stepper-window>
-            <!-- Step 1: Select Room, Date, Time -->
+            <!-- STEP 1: SELECT A ROOM, DATE AND TIME -->
             <v-stepper-window-item :value="1">
               <h3 class="stepper-title">Stap 1: Kies Ruimte, Datum & Tijd</h3>
               <v-row>
-                <v-col cols="12" v-if="ruimtes.length === 0 && !isLoading">
+                <v-col cols="12" v-if="ruimtes.length === 0  && !isLoading">
                   <v-alert type="info" variant="tonal">Geen vergaderruimtes beschikbaar.</v-alert>
                 </v-col>
                 <v-col cols="12" v-else>
@@ -201,7 +201,7 @@
               </v-row>
             </v-stepper-window-item>
 
-            <!-- Step 2: Verify Selection -->
+            <!-- STEP 2:VERIFY SELECTION  -->
             <v-stepper-window-item :value="2">
               <h3 class="stepper-title">Stap 2: Controleer uw selectie</h3>
               <v-row justify="center">
@@ -235,7 +235,7 @@
               </v-row>
             </v-stepper-window-item>
 
-            <!-- Step 3: Add Comment & Reserve -->
+            <!-- Step 3: ADD COMMENT AND BOOK ROOM-->
             <v-stepper-window-item :value="3">
               <h3 class="stepper-title">Stap 3: Opmerking & Reserveren</h3>
               <v-row justify="center">
@@ -271,7 +271,7 @@
               </v-row>
             </v-stepper-window-item>
 
-            <!-- Step 4: Confirmation -->
+            <!-- STEP 4: CONFIRMATION -->
             <v-stepper-window-item :value="4">
               <h3 class="stepper-title">Reservering Bevestigd</h3>
               <v-row justify="center">
@@ -314,6 +314,7 @@ import axios from 'axios';
 import { WORDPRESS_API_URL, WP_APP_PASSWORD } from '../config';
 
 // --- Reactive State ---
+// Manages the current state of the reservation process and user selection
 const currentStep = ref(1);
 const selectedVergaderruimteId = ref(null);
 const selectedDate = ref(null);
@@ -321,21 +322,24 @@ const timeSelection = ref([]);
 const reservationComment = ref('');
 const lastBookingDetails = ref(null);
 
+// Data fetched from API
 const ruimtes = ref([]);
 const allBookingsFromApi = ref([]);
 
+// UI state flags
 const isLoading = ref(true);
 const isLoadingTimes = ref(false);
 const isSubmittingBooking = ref(false);
 const apiError = ref(null);
 
+// Stepper component configuration
 const stepperItems = ref([
   { title: 'Selecteer', value: 1 },
   { title: 'Controleer', value: 2 },
   { title: 'Reserveer', value: 3 },
 ]);
 
-// --- Utility Functions ---
+// Functions for date formatting
 const formatDateISO = (dateInput) => {
   if (!dateInput) return null;
   let date;
@@ -358,6 +362,7 @@ const staticPossibleTimeSlots = [
   '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00',
 ];
 
+// Functions for date formatting
 const fetchRooms = async () => {
   try {
     const response = await axios.get(`${WORDPRESS_API_URL}/wp/v2/vergaderruimtes?_embed&per_page=100`);
@@ -396,6 +401,7 @@ const fetchAllBookings = async () => {
   }
 };
 
+// Functions to process and structure data fetched from the API
 const processRoomBookings = () => {
   if (ruimtes.value.length === 0) { 
      ruimtes.value.forEach(room => room.bookings = []);
@@ -500,6 +506,7 @@ const popularTimeSlots = computed(() => {
   return popularSet;
 });
 
+// Functions that determine availability, handle user interactions, and manage UI state
 const isTimeSlotBooked = (time) => {
   return bookedSlotsForSelectedDate.value.includes(time);
 };
@@ -561,6 +568,7 @@ const canProceedToStep2 = computed(() => {
   );
 });
 
+// Functions for submitting the reservation and resetting the form
 const submitBooking = async () => {
   if (!canProceedToStep2.value) {
     alert('Selecteer aub een ruimte, datum en tijdslot(en) in Stap 1.');
@@ -613,7 +621,7 @@ const submitBooking = async () => {
   console.log("--- END DEBUG AUTH ---");
   // --- DEBUG AUTH END ---
 
-
+  // API call to create the reservation post type
   try {
     await axios.post(`${WORDPRESS_API_URL}/wp/v2/reserveringen`, bookingPayload, {
       headers: {
@@ -622,6 +630,7 @@ const submitBooking = async () => {
       },
     });
 
+// Store details for the confirmation screen
     lastBookingDetails.value = {
       roomId: selectedRoomObject.value.id,
       roomName: selectedRoomObject.value.fullName,
@@ -738,7 +747,7 @@ const resetStepper = async () => {
 }
 .time-list .time-list-item.time-slot-selected:not(.time-slot-booked) {
   background-color: #e3f2fd !important;
-  border-color: #90caf9 !important;
+  border-color: #ff7c00 !important;
 }
 .time-list-item.time-slot-booked {
   background-color: #eeeeee !important;
