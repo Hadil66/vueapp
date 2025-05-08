@@ -10,11 +10,18 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     Dashboard: typeof import('./src/components/Dashboard.vue')['default']
+    DatePicker: typeof import('./src/components/DatePicker.vue')['default']
     Footer: typeof import('./src/components/AppFooter.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Nav: typeof import('./src/components/Nav.vue')['default']
     ReservationStepper: typeof import('./src/components/ReservationStepper.vue')['default']
+    RoomDetailsCard: typeof import('./src/components/RoomDetailsCard.vue')['default']
+    RoomSelector: typeof import('./src/components/RoomSelector.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Step1ReservationSelection: typeof import('./src/components/Step1ReservationSelection.vue')['default']
+    Step2Verification: typeof import('./src/components/Step2Verification.vue')['default']
+    Step3Submission: typeof import('./src/components/Step3Submission.vue')['default']
+    Step4Confirmation: typeof import('./src/components/Step4Confirmation.vue')['default']
+    TimeSlotPicker: typeof import('./src/components/TimeSlotPicker.vue')['default']
   }
 }
