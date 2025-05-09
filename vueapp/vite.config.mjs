@@ -20,11 +20,10 @@ export default defineConfig({
     Vue({
       template: { transformAssetUrls },
     }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify({
       autoImport: true,
       styles: {
-        configFile: 'src/styles/settings.scss',
+        configFile: 'src/styles/settings.scss', 
       },
     }),
     Components(),
@@ -63,6 +62,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+
     },
     extensions: [
       '.js',
@@ -79,11 +79,13 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      sass: {
-        api: 'modern-compiler',
+      sass: { 
+        api: 'modern-compiler', 
       },
-      scss: {
-        api: 'modern-compiler',
+      scss: { 
+        api: 'modern-compiler', 
+
+        additionalData: `@use "@/styles/settings.scss" as *;\n`,
       },
     },
   },

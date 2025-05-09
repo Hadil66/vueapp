@@ -277,144 +277,25 @@ watch(currentStep, (newStep) => {
 });
 </script>
 
-<style>
+<style lang="scss" scoped>
 .stepper-title {
-  font-size: 1.3rem;
+  font-size: $font-size-large;
   font-weight: 500;
-  color: #333;
-  margin-bottom: 20px;
+  color: $stepper-title-color;
+  margin-bottom: $spacing-medium;
   text-align: center;
-}
-
-.meeting-room-slider {
-  background-color: transparent !important;
-  max-width: 100%;
-}
-
-.meeting-room {
-  cursor: pointer;
-  transition: all 0.25s ease-in-out;
-  border: 1px solid transparent;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-}
-
-.meeting-room:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.meeting-room .v-card-subtitle.meeting-room-name {
-  font-size: 0.85rem !important;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.meeting-room-img {
-  border-bottom: 1px solid #eee;
-}
-
-.meeting-room-card {
-  text-align: center;
-  width: 100%;
-}
-
-.meeting-room-card .meeting-room-detail-image {
-  border: 1px solid #eee;
-}
-
-.v-col-sm-6 {
-  min-width: 21em !important;
-}
-
-.date-picker {
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 0;
-}
-
-.date-picker .v-date-picker-month__day--disabled>.v-btn {
-  background-color: #f5f5f5 !important;
-  color: #bdbdbd !important;
-  text-decoration: line-through;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.time-list-placeholder {
-  border: 1px dashed #ccc;
-  border-radius: 8px;
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fafafa;
-}
-
-.time-list {
-  max-height: 320px;
-  overflow-y: auto;
-  width: 100%;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  background-color: #fff;
-  padding: 8px !important;
-}
-
-.time-list .v-list-item {
-  border: 1px solid #f0f0f0;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
-  cursor: pointer;
-}
-
-.time-list .v-list-item:not(.time-slot-booked):hover {
-  background-color: #f0f0f0;
-}
-
-.time-list .time-list-item.time-slot-selected:not(.time-slot-booked) {
-  background-color: #e3f2fd !important;
-  border-color: var(--v-primary-base, #1976d2) !important;
-}
-
-.time-list-item.time-slot-booked {
-  background-color: #eeeeee !important;
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.time-list-item.time-slot-booked .v-list-item-title {
-  text-decoration: line-through;
-  color: #757575;
-}
-
-.time-list-item .v-list-item-action .v-checkbox-btn {
-  pointer-events: none;
-}
-
-.popular-chip {
-  font-size: 0.65rem !important;
-  height: 16px !important;
-  line-height: 1;
-  padding: 0 6px !important;
 }
 
 .v-container {
   max-width: 1200px !important;
 }
 
-.v-stepper-window .v-stepper-window-item {
-  padding: 24px 16px;
-}
-
 .v-stepper-actions {
-  padding: 16px 24px;
+  padding: $spacing-small !important;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .v-stepper-header {
-  margin-bottom: 16px;
+  margin-bottom: $spacing-small;
 }
 </style>

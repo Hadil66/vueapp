@@ -16,3 +16,21 @@ const handleDateUpdate = (date) => {
   emit("update:modelValue", date);
 };
 </script>
+
+<style lang="scss" scoped>
+  .date-picker {
+    border: 1px solid $border-color-light;
+    border-radius: $border-radius-default;
+    padding: 0;
+
+    .v-date-picker-month__day--disabled {
+      > .v-btn { 
+        background-color: $disabled-bg-color !important;
+        color: $disabled-text-color !important;
+        text-decoration: line-through;
+        cursor: not-allowed;
+        opacity: 0.7;
+      }
+    }
+  }
+</style>

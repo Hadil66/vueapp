@@ -75,3 +75,67 @@ const toggleTimeSelection = (time) => {
   localTimeSelection.value = newSelection;
 };
 </script>
+
+<style lang="scss" scoped>
+.time-list-placeholder {
+  border: 1px dashed $border-color-medium;
+  border-radius: $border-radius-default;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-extra-light;
+}
+
+.time-list {
+  max-height: 320px;
+  overflow-y: auto;
+  width: 100%;
+  border: 1px solid $border-color-light;
+  border-radius: $border-radius-default;
+  background-color: $background-light;
+  padding: $spacing-extra-small !important;
+
+  .v-list-item {
+    border: 1px solid $background-hover; 
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+
+    &:not(.time-slot-booked):hover {
+      background-color: $background-hover;
+    }
+
+    &.time-list-item {
+      &.time-slot-selected:not(.time-slot-booked) {
+        background-color: $selected-bg-color !important;
+        border-color: $primary-color !important;
+      }
+
+      &.time-slot-booked {
+        background-color: $booked-bg-color !important;
+        opacity: 0.7;
+        cursor: not-allowed;
+
+        .v-list-item-title {
+          text-decoration: line-through;
+          color: $booked-text-color;
+        }
+      }
+
+      .v-list-item-action .v-checkbox-btn {
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+:deep(.popular-chip.v-chip.test-chip-style) {
+  font-size: $font-size-tiny !important;
+  color: $primary-color !important;
+  height: 16px !important;
+  line-height: 1;
+  padding: 0 6px !important;
+  border: 2px solid green !important;
+}
+</style>

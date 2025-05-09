@@ -38,3 +38,44 @@ const emitUpdate = (value) => {
   emit("update:modelValue", value);
 };
 </script>
+
+<style lang="scss" scoped>
+  .meeting-room-slider {
+    background-color: transparent !important;
+    max-width: 100%;
+  }
+
+  .meeting-room {
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    border: 1px solid transparent;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: $background-light;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .v-card-subtitle.meeting-room-name {
+      font-size: $font-size-small !important;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    &-img { // .meeting-room-img
+      border-bottom: 1px solid $border-color-light;
+    }
+
+    &-card { // .meeting-room-card
+      text-align: center;
+      width: 100%;
+
+      .meeting-room-detail-image {
+        border: 1px solid $border-color-light;
+      }
+    }
+  }
+</style>

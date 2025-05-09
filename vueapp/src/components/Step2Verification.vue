@@ -38,3 +38,13 @@ defineProps({
   canProceed: { type: Boolean, default: false }
 });
 </script>
+
+<style lang="scss" scoped>
+  .stepper-title {
+    font-size: $font-size-large;
+    font-weight: 500;
+    color: $stepper-title-color;
+    margin-bottom: $spacing-medium;
+    text-align: center;
+  }
+</style>
