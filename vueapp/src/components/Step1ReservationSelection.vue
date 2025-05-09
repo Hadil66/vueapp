@@ -2,12 +2,9 @@
   <div>
     <h3 class="stepper-title">Stap 1: Kies Ruimte, Datum & Tijd</h3>
     <v-row>
-      <v-col
-        cols="12"
-        v-if="
-          !props.isLoadingParent && props.ruimtes.length === 0 && !props.isLoadingTimes
-        "
-      >
+      <v-col cols="12" v-if="
+        !props.isLoadingParent && props.ruimtes.length === 0 && !props.isLoadingTimes
+      ">
         <v-alert type="info" variant="tonal">Geen vergaderruimtes beschikbaar.</v-alert>
       </v-col>
       <v-col cols="12" v-else-if="!props.isLoadingParent || props.ruimtes.length > 0">
@@ -22,40 +19,27 @@
           <v-col cols="12" md="4">
             <h4>Gekozen Ruimte Details</h4>
             <!-- ROOM DETAILS CARD COMPONENT -->
-            <RoomDetailsCard
-              v-if="selectedRoomObject"
-              :selected-room-object="selectedRoomObject"
-            />
+            <RoomDetailsCard v-if="selectedRoomObject" :selected-room-object="selectedRoomObject" />
           </v-col>
           <v-col cols="12" md="4">
             <v-row>
               <v-col cols="12">
                 <h4>Selecteer Datum</h4>
                 <!-- DATE PICKER COMPONENT -->
-                <DatePicker
-                  v-model="localSelectedDate"
-                  :allowed-dates-fn="allowedDates"
-                  :disabled="!selectedRoomObject"
-                  :min-date="props.todayDateString"
-                />
+                <DatePicker v-model="localSelectedDate" :allowed-dates-fn="allowedDates" :disabled="!selectedRoomObject"
+                  :min-date="props.todayDateString" />
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="12" md="4">
             <h4>Selecteer Tijd(en)</h4>
             <!-- TIME SLOT PICKER COMPONENT -->
-            <TimeSlotPicker
-              :selected-date="localSelectedDate"
+            <TimeSlotPicker :selected-date="localSelectedDate"
               :formatted-selected-date-short="formattedSelectedDateShort"
-              :static-possible-time-slots="props.staticPossibleTimeSlots"
-              :booked-slots="bookedSlotsForSelectedDate"
-              v-model="localTimeSelection"
-              :is-loading-times="props.isLoadingTimes"
-              :all-times-booked-for-date="allTimesBookedForDate"
-              :popular-time-slots-set="popularTimeSlots"
-              :is-time-slot-booked-fn="isTimeSlotBooked"
-              :is-popular-fn="isPopular"
-            />
+              :static-possible-time-slots="props.staticPossibleTimeSlots" :booked-slots="bookedSlotsForSelectedDate"
+              v-model="localTimeSelection" :is-loading-times="props.isLoadingTimes"
+              :all-times-booked-for-date="allTimesBookedForDate" :popular-time-slots-set="popularTimeSlots"
+              :is-time-slot-booked-fn="isTimeSlotBooked" :is-popular-fn="isPopular" />
           </v-col>
         </v-row>
       </v-col>

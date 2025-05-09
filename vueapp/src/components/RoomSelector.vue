@@ -1,41 +1,15 @@
 <template>
   <v-sheet class="mx-auto meeting-room-slider" width="100%">
-    <v-slide-group
-      :model-value="props.modelValue"
-      @update:model-value="emitUpdate"
-      center-active
-      show-arrows
-      class="py-2"
-    >
-      <v-slide-group-item
-        v-for="ruimte in props.ruimtes"
-        :key="ruimte.id"
-        :value="ruimte.id"
-        v-slot="{ isSelected, toggle }"
-      >
-        <v-card
-          :color="isSelected ? 'primary' : 'grey-lighten-4'"
-          :variant="isSelected ? 'elevated' : 'outlined'"
-          class="ma-3 meeting-room"
-          height="190"
-          width="140"
-          @click="toggle"
-          :elevation="isSelected ? 4 : 0"
-        >
-          <v-img
-            :src="ruimte.imageSrc || '/images/placeholder.png'"
-            :alt="ruimte.name + ' afbeelding'"
-            height="120"
-            cover
-            class="meeting-room-img"
-          >
+    <v-slide-group :model-value="props.modelValue" @update:model-value="emitUpdate" center-active show-arrows
+      class="py-2">
+      <v-slide-group-item v-for="ruimte in props.ruimtes" :key="ruimte.id" :value="ruimte.id"
+        v-slot="{ isSelected, toggle }">
+        <v-card :color="isSelected ? 'primary' : 'grey-lighten-4'" :variant="isSelected ? 'elevated' : 'outlined'"
+          class="ma-3 meeting-room" height="190" width="140" @click="toggle" :elevation="isSelected ? 4 : 0">
+          <v-img :src="ruimte.imageSrc || '/images/placeholder.png'" :alt="ruimte.name + ' afbeelding'" height="120"
+            cover class="meeting-room-img">
             <template #placeholder>
-              <v-img
-                src="/images/placeholder.png"
-                height="120"
-                cover
-                alt="Laden..."
-              ></v-img>
+              <v-img src="/images/placeholder.png" height="120" cover alt="Laden..."></v-img>
             </template>
             <template #error>
               <v-img src="/images/placeholder.png" height="120" cover alt="Fout"></v-img>
