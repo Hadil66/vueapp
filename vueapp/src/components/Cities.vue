@@ -1,29 +1,42 @@
 <template>
   <v-card class="mx-auto" max-width="200">
     <h1>Locaties in de randstad</h1>
-    <v-list role="list">
-      <v-list-item v-for="(locatie, index) in locaties" :key="index" role="listitem" tabindex="0">
-        <v-list-item-title>{{ locatie }}</v-list-item-title>
+      <v-list  role="list">
+      <v-list-item
+        v-for="locatie in locaties"
+        :key="locatie.value"
+        @click="selectLocation(locatie.value)"
+        :active="selectedCityValue === locatie.value"
+        color="primary"
+        role="listitem"
+        tabindex="0"
+      >
+      <v-list-item-title> {{ locatie.name }} </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-card>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      locaties: [
-        'Alphen a/d Rijn',
-        'Amsterdam',
-        'Delft',
-        'Den Haag',
-        'Heemstede',
-        'Oegstgeest',
-        'Rijswijk',
-      ],
-    };
-  },
+<script setup>
+import { ref } from 'vue';
+
+const emit = defineEmits(['city-selected']);
+
+const locaties = ref([
+  { name: 'Alphen a/d Rijn', value: 'alphen-ad-rijn' },
+  { name: 'Amsterdam', value: 'amsterdam' },
+  { name: 'Delft', value: 'delft' },
+  { name: 'Den Haag', value: 'den-haag' },
+  { name: 'Heemstede', value: 'heemstede' },
+  { name: 'Oegstgeest', value: 'oegstgeest' },
+  { name: 'Rijswijk', value: 'rijswijk' },
+]);
+
+const selectedCityValue = ref(null); 
+
+const selectLocation = (cityValue) => {
+  selectedCityValue.value = cityValue;
+  emit('city-selected', cityValue); 
 };
 </script>
 

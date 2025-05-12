@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <!-- <v-alert v-if="!initialLoadComplete && !selectedCityFilter && !apiError" type="info" class="my-5" prominent>
+        Selecteer een locatie om de beschikbare ruimtes te zien.
+    </v-alert> -->
     <!-- Loading and Error States -->
     <v-row v-if="isLoading && !apiError" justify="center" class="my-10">
       <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
@@ -87,6 +90,13 @@ const stepperItems = ref([
   { title: "Reserveer", value: 3 },
 ]);
 
+const props = defineProps({
+  selectedCityFilter: {
+    type: String,
+    default: null,
+  },
+});
+
 const staticPossibleTimeSlots = [
   "09:00 - 10:00",
   "10:00 - 11:00",
@@ -122,12 +132,13 @@ const fetchRooms = async () => {
     ruimtes.value = response.data.map((room) => ({
       id: room.id,
       name:
-        room.acf?.room_short_name || room.title.rendered.replace("Vergaderruimte ", ""),
+        room.acf?.room_name || room.title.rendered.replace("Vergaderruimte ", ""),
       fullName: room.acf?.room_full_name || room.title.rendered,
       description: room.content?.rendered || "Geen beschrijving beschikbaar.",
       capacity: room.acf?.room_capacity || 0,
       features: room.acf?.room_features || [],
       imageSrc: room._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null,
+      city: room.acf?.city_name,
     }));
   } catch (error) {
     console.error("Error fetching rooms:", error.response || error);
@@ -207,7 +218,7 @@ const submitBooking = async () => {
   isSubmittingBooking.value = true;
   apiError.value = null;
 
-  const bookingPayload = {
+ const bookingPayload = {
     status: "publish",
     title: `Reservering voor ${selectedRoomObject.value.name} op ${formatDateISO(
       selectedDate.value
@@ -230,33 +241,34 @@ const submitBooking = async () => {
   }
   const base64Credentials = btoa(`${usernameFromEnv}:${appPasswordFromConfig}`);
 
-  try {
-    await axios.post(`${WORDPRESS_API_URL}/wp/v2/reserveringen`, bookingPayload, {
+  console.log("Submitting Booking Payload:", JSON.stringify(bookingPayload, null, 2));
+    
+ try {
+    await axios.post(`${WORDPRESS_API_URL}/wp/v2/reserveringen`, bookingPayload, { // The actual POST request
       headers: {
         "Content-Type": "application/json",
         Authorization: `Basic ${base64Credentials}`,
       },
     });
-    lastBookingDetails.value = {
-      roomId: selectedRoomObject.value.id,
-      roomName: selectedRoomObject.value.fullName,
-      date: formatDateISO(selectedDate.value),
-      formattedDate: formattedSelectedDateLong.value,
-      times: [...timeSelection.value],
-      comment: reservationComment.value || "",
-      isApiBooking: true,
-    };
-    await fetchAllBookings();
-    currentStep.value = 4;
+     lastBookingDetails.value = {
+       roomId: selectedRoomObject.value.id,
+       roomName: selectedRoomObject.value.fullName,
+       date: formatDateISO(selectedDate.value),
+       formattedDate: formattedSelectedDateLong.value,
+       times: [...timeSelection.value],
+       comment: reservationComment.value || "",
+       isApiBooking: true,
+     };
+     await fetchAllBookings();
+     currentStep.value = 4;
   } catch (error) {
     console.error("Error submitting booking:", error.response?.data || error.message);
-    apiError.value = `Fout bij het maken van de reservering: ${error.response?.data?.message || error.message
+       apiError.value = `Fout bij het maken van de reservering: ${error.response?.data?.message || error.message
       }.`;
   } finally {
     isSubmittingBooking.value = false;
   }
 };
-
 const resetStepper = async () => {
   selectedVergaderruimteId.value = null;
   selectedDate.value = null;

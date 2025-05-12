@@ -9,7 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
-    Dashboard: typeof import('./src/components/Dashboard.vue')['default']
+    Cities: typeof import('./src/components/Cities.vue')['default']
     DatePicker: typeof import('./src/components/DatePicker.vue')['default']
     Footer: typeof import('./src/components/AppFooter.vue')['default']
     Nav: typeof import('./src/components/Nav.vue')['default']

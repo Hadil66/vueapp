@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <Nav />
-      <Dashboard />
+      <Cities @city-selected="updateSelectedCity" />
       <ReservationStepper />
       <AppFooter />
     </v-main>
@@ -10,13 +10,18 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'; 
+import { onMounted, ref } from 'vue'; 
 
 import Nav from './components/Nav.vue';
-import Dashboard from './components/Dashboard.vue';
+import Cities from './components/Cities.vue';
 import ReservationStepper from './components/ReservationStepper.vue';
 import AppFooter from './components/AppFooter.vue';
 
+const currentSelectedCity = ref(null);
+
+const updateSelectedCity = (cityValue) => {
+  currentSelectedCity.value = cityValue;
+};
 onMounted(() => {
   console.log('--- APP.VUE MOUNTED ---');
   console.log('RAW VITE_WP_USERNAME FROM ENV (App.vue):', import.meta.env.VITE_WP_USERNAME);
