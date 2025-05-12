@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 class="stepper-title">Stap 3: Opmerking & Reserveren</h3>
+    <h2 class="stepper-title">Stap 3: Opmerking & Reserveren</h2>
     <v-row justify="center">
       <v-col cols="12" md="8" lg="7">
-        <h4>Opmerking toevoegen (optioneel)</h4>
+        <h3>Opmerking toevoegen (optioneel)</h3>
         <v-textarea v-model="localComment" label="Voeg hier eventuele opmerkingen toe" rows="3" variant="outlined"
           class="mt-2 mb-6" clearable counter maxlength="200" :disabled="isSubmittingBooking"></v-textarea>
         <v-divider class="mb-6"></v-divider>

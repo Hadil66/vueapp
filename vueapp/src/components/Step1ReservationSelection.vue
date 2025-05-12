@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="stepper-title">Stap 1: Kies Ruimte, Datum & Tijd</h3>
+    <h2 class="stepper-title">Stap 1: Kies Ruimte, Datum & Tijd</h2>
     <v-row>
       <v-col cols="12" v-if="
         !props.isLoadingParent && props.ruimtes.length === 0 && !props.isLoadingTimes
@@ -8,7 +8,7 @@
         <v-alert type="info" variant="tonal">Geen vergaderruimtes beschikbaar.</v-alert>
       </v-col>
       <v-col cols="12" v-else-if="!props.isLoadingParent || props.ruimtes.length > 0">
-        <h4>Kies een vergaderruimte</h4>
+        <h3>Kies een vergaderruimte</h3>
         <!-- ROOM SELECTOR COMPONENT -->
         <RoomSelector :ruimtes="props.ruimtes" v-model="localSelectedRoomId" />
       </v-col>
@@ -17,14 +17,14 @@
         <v-divider class="my-4"></v-divider>
         <v-row>
           <v-col cols="12" md="4">
-            <h4>Gekozen Ruimte Details</h4>
+            <h3>Gekozen Ruimte Details</h3>
             <!-- ROOM DETAILS CARD COMPONENT -->
             <RoomDetailsCard v-if="selectedRoomObject" :selected-room-object="selectedRoomObject" />
           </v-col>
           <v-col cols="12" md="4">
             <v-row>
               <v-col cols="12">
-                <h4>Selecteer Datum</h4>
+                <h3>Selecteer Datum</h3>
                 <!-- DATE PICKER COMPONENT -->
                 <DatePicker v-model="localSelectedDate" :allowed-dates-fn="allowedDates" :disabled="!selectedRoomObject"
                   :min-date="props.todayDateString" />
@@ -32,7 +32,7 @@
             </v-row>
           </v-col>
           <v-col cols="12" md="4">
-            <h4>Selecteer Tijd(en)</h4>
+            <h3>Selecteer Tijd(en)</h3>
             <!-- TIME SLOT PICKER COMPONENT -->
             <TimeSlotPicker :selected-date="localSelectedDate"
               :formatted-selected-date-short="formattedSelectedDateShort"
@@ -222,3 +222,13 @@ watch(
   }
 );
 </script>
+
+<style lang="scss" scoped>
+  .stepper-title {
+    font-size: $font-size-large;
+    font-weight: 500;
+    color: $stepper-title-color;
+    margin-bottom: $spacing-medium;
+    text-align: center;
+  }
+</style>

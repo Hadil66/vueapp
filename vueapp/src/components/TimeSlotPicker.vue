@@ -130,12 +130,4 @@ const toggleTimeSelection = (time) => {
   }
 }
 
-:deep(.popular-chip.v-chip.test-chip-style) {
-  font-size: $font-size-tiny !important;
-  color: $primary-color !important;
-  height: 16px !important;
-  line-height: 1;
-  padding: 0 6px !important;
-  border: 2px solid green !important;
-}
 </style>

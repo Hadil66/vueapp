@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="stepper-title">Stap 2: Controleer uw selectie</h3>
+    <h2 class="stepper-title">Stap 2: Controleer uw selectie</h2>
     <v-row justify="center">
       <v-col cols="12" md="8" lg="7">
         <div v-if="canProceed && selectedRoomObject">
