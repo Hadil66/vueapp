@@ -14,7 +14,6 @@ $booked-bg-color: #eeeeee;
 $booked-text-color: #757575;
 $selected-bg-color: #e3f2fd;
 $primary-color: #ff7c00;
-$primary-css-var: var(--v-theme-primary, #ff7c00);
 
 $font-size-large: 1.3rem;
 $font-size-small: 0.85rem;
@@ -25,3 +24,7 @@ $spacing-medium: 20px;
 $spacing-small: 16px;
 $spacing-extra-small: 8px;
 
+.v-alert {
+  background-color: $primary-color !important;
+  color: $stepper-title-color !important;
+}

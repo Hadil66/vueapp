@@ -98,7 +98,7 @@ const toggleTimeSelection = (time) => {
   padding: $spacing-extra-small !important;
 
   .v-list-item {
-    border: 1px solid $background-hover; 
+    border: 1px solid $background-hover;
     transition: background-color 0.2s ease, opacity 0.2s ease;
     cursor: pointer;
 

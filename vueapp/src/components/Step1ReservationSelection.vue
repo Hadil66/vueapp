@@ -2,14 +2,14 @@
   <div>
     <h2 class="stepper-title">Stap 1: Kies Ruimte, Datum & Tijd</h2>
     <v-row>
-      <v-col cols="12" v-if="
-        !props.isLoadingParent && props.ruimtes.length === 0 && !props.isLoadingTimes
-      ">
-        <v-alert type="info" variant="tonal">Geen vergaderruimtes beschikbaar.</v-alert>
+      <v-col cols="12"
+      v-if="!props.isLoadingParent && props.ruimtes.length === 0 && !props.isLoadingTimes">
+      <v-alert type="info" variant="tonal">
+          Geen vergaderruimtes beschikbaar in {{ props.cityName }}.
+        </v-alert>
       </v-col>
       <v-col cols="12" v-else-if="!props.isLoadingParent || props.ruimtes.length > 0">
-        <h3>Kies een vergaderruimte</h3>
-        <!-- ROOM SELECTOR COMPONENT -->
+        <h3>{{ roomSelectionTitle }}</h3>
         <RoomSelector :ruimtes="props.ruimtes" v-model="localSelectedRoomId" />
       </v-col>
 
@@ -18,14 +18,12 @@
         <v-row>
           <v-col cols="12" md="4">
             <h3>Gekozen Ruimte Details</h3>
-            <!-- ROOM DETAILS CARD COMPONENT -->
             <RoomDetailsCard v-if="selectedRoomObject" :selected-room-object="selectedRoomObject" />
           </v-col>
           <v-col cols="12" md="4">
             <v-row>
               <v-col cols="12">
                 <h3>Selecteer Datum</h3>
-                <!-- DATE PICKER COMPONENT -->
                 <DatePicker v-model="localSelectedDate" :allowed-dates-fn="allowedDates" :disabled="!selectedRoomObject"
                   :min-date="props.todayDateString" />
               </v-col>
@@ -33,7 +31,6 @@
           </v-col>
           <v-col cols="12" md="4">
             <h3>Selecteer Tijd(en)</h3>
-            <!-- TIME SLOT PICKER COMPONENT -->
             <TimeSlotPicker :selected-date="localSelectedDate"
               :formatted-selected-date-short="formattedSelectedDateShort"
               :static-possible-time-slots="props.staticPossibleTimeSlots" :booked-slots="bookedSlotsForSelectedDate"
@@ -48,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { computed, watch } from "vue";
 import RoomSelector from "./RoomSelector.vue";
 import RoomDetailsCard from "./RoomDetailsCard.vue";
 import DatePicker from "./DatePicker.vue";
@@ -64,7 +61,18 @@ const props = defineProps({
   selectedRoomId: { type: [Number, String], default: null },
   selectedDateProp: { type: [Date, String, null], default: null },
   timeSelectionProp: { type: Array, default: () => [] },
+  cityName: { type: String, default: '', },
 });
+
+watch(() => props.cityName, (newName) => {
+  console.log('[Step1ReservationSelection.vue] props.cityName changed to:', newName);
+});
+
+const roomSelectionTitle = computed(() => {
+  console.log('[Step1ReservationSelection.vue] roomSelectionTitle computed with props.cityName:', props.cityName);
+  return `Kies een vergaderruimte in ${props.cityName || 'geselecteerde stad'}`;
+});
+
 
 const emit = defineEmits([
   "update:selectedRoomId",
