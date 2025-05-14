@@ -18,17 +18,12 @@ import { onMounted, ref, watch } from 'vue';
 const currentSelectedCityObject = ref(null);
 
 const updateSelectedCity = (cityObject) => {
-  // DEBUG: Log what is received
-  console.log('[App.vue] updateSelectedCity received:', cityObject);
   currentSelectedCityObject.value = cityObject;
 };
 
-// DEBUG: Watch the object and what's being derived for props
 watch(currentSelectedCityObject, (newVal) => {
-  console.log('[App.vue] currentSelectedCityObject changed to:', newVal);
-  console.log('[App.vue] Derived selectedCityFilter for prop:', newVal?.value);
-  console.log('[App.vue] Derived selectedCityDisplayName for prop:', newVal?.name);
-}, { deep: true }); // Use deep watch if the object itself might be mutated (though not expected here)
+
+}, { deep: true }); 
 
 
 onMounted(() => {

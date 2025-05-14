@@ -103,14 +103,10 @@ const props = defineProps({
   },
 });
 
-console.log('[ReservationStepper.vue] Initial props.selectedCityFilter:', props.selectedCityFilter);
-console.log('[ReservationStepper.vue] Initial props.selectedCityDisplayName:', props.selectedCityDisplayName);
 
 watch(() => props.selectedCityDisplayName, (newName) => {
-  console.log('[ReservationStepper.vue] props.selectedCityDisplayName changed to:', newName);
 });
 watch(() => props.selectedCityFilter, (newFilter) => {
-  console.log('[ReservationStepper.vue] props.selectedCityFilter changed to:', newFilter);
 });
 
 const currentStep = ref(1);
@@ -240,7 +236,6 @@ watch(selectedVergaderruimteId, (newId, oldId) => {
   }
 });
 
-
 const selectedRoomObject = computed(() => {
   if (selectedVergaderruimteId.value === null || !filteredRuimtes.value.length) return null;
   return filteredRuimtes.value.find((ruimte) => ruimte.id === selectedVergaderruimteId.value);
@@ -272,7 +267,6 @@ const submitBooking = async () => {
   isSubmittingBooking.value = true;
   apiError.value = null;
 
-  // Make sure selectedRoomObject is available
   if (!selectedRoomObject.value) {
     apiError.value = "Geselecteerde ruimte niet gevonden. Probeer opnieuw.";
     isSubmittingBooking.value = false;
@@ -324,7 +318,8 @@ const submitBooking = async () => {
     currentStep.value = 4;
   } catch (error) {
     console.error("Error submitting booking:", error.response?.data || error.message);
-    apiError.value = `Fout bij het maken van de reservering: ${error.response?.data?.message || error.message}.`;
+    apiError.value = `Fout bij het maken van de reservering: ${error.response?.data?.message || error.message
+      }.`;
   } finally {
     isSubmittingBooking.value = false;
   }

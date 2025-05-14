@@ -65,11 +65,9 @@ const props = defineProps({
 });
 
 watch(() => props.cityName, (newName) => {
-  console.log('[Step1ReservationSelection.vue] props.cityName changed to:', newName);
 });
 
 const roomSelectionTitle = computed(() => {
-  console.log('[Step1ReservationSelection.vue] roomSelectionTitle computed with props.cityName:', props.cityName);
   return `Kies een vergaderruimte in ${props.cityName || 'geselecteerde stad'}`;
 });
 
@@ -77,7 +75,7 @@ const roomSelectionTitle = computed(() => {
 const emit = defineEmits([
   "update:selectedRoomId",
   "update:selectedDateProp",
-  "update:timeSelectionProp",
+  "update:timeSelectionProp",3
 ]);
 
 const localSelectedRoomId = computed({
