@@ -43,7 +43,7 @@ const selectLocation = (cityValue) => {
 };
 </script>
 
-<style>
+<style scoped >
 .v-card.mx-auto {
   max-width: 960px !important;
   border-radius: $border-radius-default !important;

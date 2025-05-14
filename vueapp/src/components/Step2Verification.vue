@@ -4,17 +4,21 @@
     <v-row justify="center">
       <v-col cols="12" md="8" lg="7">
         <div v-if="canProceed && selectedRoomObject">
-          <v-card variant="outlined" class="pa-4">
-            <p class="mb-2">
-              <strong>Gekozen Ruimte:</strong>
-              {{ selectedRoomObject?.fullName }}
+          <v-card class="p">
+            <p class="mb-3 d-flex align-center">
+              <v-icon icon="mdi-map-marker-outline" class="mr-2 detail-icon"></v-icon>
+              <strong class="mr-1">Gekozen Ruimte:</strong>
+              <span>{{ selectedRoomObject?.fullName }}</span>
             </p>
-            <p class="mb-2">
-              <strong>Datum:</strong> {{ formattedSelectedDateLong }}
+            <p class="mb-3 d-flex align-center">
+              <v-icon icon="mdi-calendar-blank-outline" class="mr-2 detail-icon"></v-icon>
+              <strong class="mr-1">Datum:</strong>
+              <span>{{ formattedSelectedDateLong }}</span>
             </p>
-            <p class="mb-0">
-              <strong>Geselecteerde Tijd(en):</strong>
-              {{ timeSelection.join(", ") }}
+            <p class="mb-0 d-flex align-center">
+              <v-icon icon="mdi-clock-time-four-outline" class="mr-2 detail-icon"></v-icon>
+              <strong class="mr-1">Geselecteerde Tijd(en):</strong>
+              <span>{{ timeSelection.join(", ") }}</span>
             </p>
           </v-card>
           <p class="text-caption text-center mt-4">
@@ -46,5 +50,9 @@ defineProps({
     color: $stepper-title-color;
     margin-bottom: $spacing-medium;
     text-align: center;
+  }
+
+  p {
+    padding: 6px;
   }
 </style>
