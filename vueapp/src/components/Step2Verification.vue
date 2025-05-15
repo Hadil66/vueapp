@@ -3,8 +3,7 @@
     <h2 class="stepper-title">Stap 2: Controleer uw selectie</h2>
     <v-row justify="center">
       <v-col cols="12" md="8" lg="7">
-        <div v-if="canProceed && selectedRoomObject">
-          <v-card class="p">
+          <v-card class="">
             <p class="mb-3 d-flex align-center">
               <v-icon icon="mdi-map-marker-outline" class="mr-2 detail-icon"></v-icon>
               <strong class="mr-1">Gekozen Ruimte:</strong>
@@ -24,11 +23,6 @@
           <p class="text-caption text-center mt-4">
             Klopt alles? Klik op 'Volgende' om door te gaan.
           </p>
-        </div>
-        <div v-else>
-          <v-alert type="warning" variant="tonal"
-            text="Selectie onvolledig. Ga a.u.b. terug naar stap 1 en selecteer een ruimte, datum en minimaal één beschikbare tijd."></v-alert>
-        </div>
       </v-col>
     </v-row>
   </div>
@@ -50,6 +44,10 @@ defineProps({
     color: $stepper-title-color;
     margin-bottom: $spacing-medium;
     text-align: center;
+  }
+
+  .v-card {
+    box-shadow: none !important;
   }
 
   p {

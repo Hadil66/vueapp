@@ -78,7 +78,7 @@ const toggleTimeSelection = (time) => {
 
 <style lang="scss" scoped>
 .time-list-placeholder {
-  border: 1px dashed $border-color-medium;
+  border: 1px solid $border-color-medium;
   border-radius: $border-radius-default;
   min-height: 150px;
   display: flex;

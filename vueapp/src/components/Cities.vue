@@ -76,7 +76,7 @@ const selectLocation = (cityValue) => {
 }
 
 h1 {
-  font-size: clamp(1.5625rem, 1.027rem + 2.2549vw, 3rem) !important;
+  font-size: clamp(1.5625rem, 1.027rem + 2.2549vw, 3rem);
   padding: 0 16px;
   height: 4em;
   width: clamp(255px, 60%, 500px);
@@ -85,7 +85,7 @@ h1 {
 .mx-auto li {
   padding: 0.3em;
   list-style-type: none;
-  font-size: clamp(1.2rem, -2.2593rem + 377.9341vw, 1.5rem) !important;
+  font-size: clamp(1.2rem, -2.2593rem + 377.9341vw, 1.5rem);
   border-bottom: solid 1px $stepper-title-color;
   width: 10em;
 }

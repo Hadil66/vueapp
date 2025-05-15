@@ -57,7 +57,8 @@
               @new-reservation-requested="resetStepper" />
           </template>
 
-          <v-stepper-actions>
+          <v-stepper-actions
+          :class="{ 'prev-invisible': currentStep === 1 && !isSubmittingBooking }">
             <template #prev>
               <v-btn v-if="currentStep !== 1 && !isSubmittingBooking" @click="currentStep--">
                 Vorige
@@ -354,6 +355,10 @@ watch(currentStep, (newStep) => {
 .v-stepper-actions {
   padding: $spacing-small !important;
   border-top: 1px solid $stepper-title-color;
+  
+  &.prev-invisible {
+    justify-content: flex-end !important;
+  }
 }
 
 .v-stepper-header {
