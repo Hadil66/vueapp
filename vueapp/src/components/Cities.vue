@@ -1,19 +1,19 @@
 <template>
   <v-card class="mx-auto" max-width="200">
-    <h1>Locaties in de randstad</h1>
-    <v-list role="list">
-      <v-list-item
+    <h1>Vergaderlocaties in de randstad</h1>
+    <ul role="list">
+      <li
         v-for="locatie in locaties"
         :key="locatie.value"
         @click="selectLocation(locatie.value)"
-        :active="selectedCityValue === locatie.value" 
+        :active="selectedCityValue === locatie.value"
         color="primary"
         role="listitem"
         tabindex="0"
       >
-        <v-list-item-title> {{ locatie.name }} </v-list-item-title>
-      </v-list-item>
-    </v-list>
+        {{ locatie.name }}
+    </li>
+    </ul>
   </v-card>
 </template>
 
@@ -43,7 +43,7 @@ const selectLocation = (cityValue) => {
 };
 </script>
 
-<style scoped >
+<style scoped lang="scss">
 .v-card.mx-auto {
   max-width: 960px !important;
   border-radius: $border-radius-default !important;
@@ -51,20 +51,20 @@ const selectLocation = (cityValue) => {
   padding: 2em;
 }
 
-.mx-auto .v-list {
+.mx-auto ul {
   display: flex !important;
   flex-direction: column !important;
   flex-wrap: wrap !important;
 }
 
 @media (min-width:600px) {
-  .mx-auto .v-list {
+  .mx-auto ul {
     height: 15em !important;
   }
 }
 
 @media (min-width: 850px) {
-  .mx-auto .v-list {
+  .mx-auto .ul {
     height: 10em;
   }
 }
@@ -79,23 +79,21 @@ h1 {
   font-size: clamp(1.5625rem, 1.027rem + 2.2549vw, 3rem) !important;
   padding: 0 16px;
   height: 4em;
-  width: clamp(200px, 40%, 400px);
+  width: clamp(255px, 60%, 500px);
 }
 
-.mx-auto .v-list-item {
-  height: 2em;
-}
-
-.mx-auto .v-list-item-title {
+.mx-auto li {
+  padding: 0.3em;
+  list-style-type: none;
   font-size: clamp(1.2rem, -2.2593rem + 377.9341vw, 1.5rem) !important;
   border-bottom: solid 1px $stepper-title-color;
-  width: max-content;
+  width: 10em;
 }
 
-.v-list-item:hover,
-.v-list-item:focus,
-.v-list-item:active {
-  color: $primary-color !important;
+li:hover,
+li:focus,
+li:active {
+  color: $primary-color;
   cursor: pointer;
 }
 </style>
