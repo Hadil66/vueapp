@@ -15,9 +15,9 @@
               <v-img src="/images/placeholder.png" height="120" cover alt="Fout"></v-img>
             </template>
           </v-img>
-          <v-card-subtitle class="pt-3 pb-1 text-center meeting-room-name">
+          <v-card-text class="pb-1 text-center meeting-room-name">
             {{ ruimte.name }}
-          </v-card-subtitle>
+          </v-card-text>
           <v-card-text class="text-caption text-center pa-0">
             Max: {{ ruimte.capacity }} pers.
           </v-card-text>
@@ -41,7 +41,6 @@ const emitUpdate = (value) => {
 
 <style lang="scss" scoped>
   .meeting-room-slider {
-    background-color: transparent !important;
     max-width: 100%;
   }
 
@@ -58,11 +57,8 @@ const emitUpdate = (value) => {
       transform: translateY(-4px);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
-
-    .v-card-subtitle.meeting-room-name {
-      font-size: $font-size-small !important;
+    .v-card-text.meeting-room-name {
       font-weight: 500;
-      line-height: 1.3;
     }
 
     &-img { // .meeting-room-img
@@ -77,5 +73,9 @@ const emitUpdate = (value) => {
         border: 1px solid $border-color-light;
       }
     }
+  }
+
+  .bg-primary {
+    color: $dark !important;
   }
 </style>
