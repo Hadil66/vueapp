@@ -108,12 +108,10 @@ const toggleTimeSelection = (time) => {
 
     &.time-list-item {
       &.time-slot-selected:not(.time-slot-booked) {
-        background-color: $selected-bg-color !important;
         border-color: $primary-color !important;
       }
 
       &.time-slot-booked {
-        background-color: $booked-bg-color !important;
         opacity: 0.7;
         cursor: not-allowed;
 

@@ -48,12 +48,11 @@ const emitUpdate = (value) => {
   .meeting-room {
     cursor: pointer;
     transition: all 0.25s ease-in-out;
-    border: 1px solid transparent;
+    border: 1px solid $border-color-light;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     background-color: $background-light;
-    box-shadow: 4px 4px 2px -4px rgba(0,0,0,0.22) !important;
 
     &:hover {
       transform: translateY(-4px);
